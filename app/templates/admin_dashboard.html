@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SecFile</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/templatemo-topic-listing.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--
+
+TemplateMo 590 topic listing
+
+https://templatemo.com/tm-590-topic-listing
+
+-->
+</head>
+
+<body id="top">
+
+    <main>
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi-back"></i>
+                    <span>SecFile</span>
+                </a>
+
+                <div class="d-lg-none ms-auto me-4">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_1">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_2">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_3">How it works</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_4">FAQs</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                        </li>
+
+            
+                    </ul>
+
+                    <div class="d-none d-lg-block">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h1 class="text-white text-center">Hello Admin.</h1>
+
+                        <h6 class="text-center">SecFile awaits for its <i>Capitan</i></h6>
+
+
+                    </div>
+                    <br><br><br><br><br><br>
+
+                    <div class="col-lg-6">
+                        <div class="chart-container">
+                        <h3>Number of Users</h3>
+                        <canvas id="usersChart"></canvas>
+                    </div>
+                    </div>
+                    
+                    <!-- Memory Usage Chart -->
+                    <div class="col-lg-6">
+                        <div class="chart-container">
+                        <h3>Memory Used by Files</h3>
+                        <canvas id="memoryChart"></canvas>
+                    </div></div>
+
+                </div>
+            </div>
+        </section>
+        <section class="explore-section section-padding" id="section_2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="mb-4">Dashboard</h2>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
+                                data-bs-target="#design-tab-pane" type="button" role="tab"
+                                aria-controls="design-tab-pane" aria-selected="true">Files</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
+                                data-bs-target="#marketing-tab-pane" type="button" role="tab"
+                                aria-controls="marketing-tab-pane" aria-selected="false">Backups</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="music-tab" data-bs-toggle="tab"
+                                data-bs-target="#music-tab-pane" type="button" role="tab"
+                                aria-controls="music-tab-pane" aria-selected="false">Users</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0" data-modal-target="#files-modal">
+                                <div class="custom-block bg-white shadow-lg">
+                                    <div class="d-flex">
+                                        <div>
+                                            <h5 class="mb-2">Files</h5>
+                                            <p class="mb-0">View Encrypted Files</p>
+                                        </div>
+                                        <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                    </div>
+                                    <img src="{{ url_for('static', filename='images/topics/efiles.svg') }}" class="custom-block-image img-fluid" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab" tabindex="0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3" data-modal-target="#backup-modal">
+                                <div class="custom-block bg-white shadow-lg">
+                                    <div class="d-flex">
+                                        <div>
+                                            <h5 class="mb-2">Backup</h5>
+                                            <p class="mb-0">View Backed Up Data</p>
+                                        </div>
+                                        <span class="badge bg-advertising rounded-pill ms-auto">30</span>
+                                    </div>
+                                    <img src="{{ url_for('static', filename='images/topics/backup.svg') }}" class="custom-block-image img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3" data-modal-target="#recovery-modal">
+                                <div class="custom-block bg-white shadow-lg">
+                                    <div class="d-flex">
+                                        <div>
+                                            <h5 class="mb-2">Recovery</h5>
+                                            <p class="mb-0">Approve Recovery Requests From Users</p>
+                                        </div>
+                                        <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                    </div>
+                                    <img src="{{ url_for('static', filename='images/topics/recover.svg') }}" class="custom-block-image img-fluid" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3" data-modal-target="#view-users-modal">
+                                <div class="custom-block bg-white shadow-lg">
+                                    <div class="d-flex">
+                                        <div>
+                                            <h5 class="mb-2">Users</h5>
+                                            <p class="mb-0">View users in the system</p>
+                                        </div>
+                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                    </div>
+                                    <img src="{{ url_for('static', filename='images/topics/share.svg') }}" class="custom-block-image img-fluid" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Modal Sections -->
+        <div id="files-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <section class="topics-detail-section section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-12 m-auto">
+                                <h3 class="mb-4">View encrypted files</h3>
+                                <p>No files to show</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+        <div id="backup-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <section class="topics-detail-section section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-12 m-auto">
+                                <h3 class="mb-4">View BackedUp Files</h3>
+                                <p>Nothing to show.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div id="recovery-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <section class="topics-detail-section section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-12 m-auto">
+                                <h3 class="mb-4">Accept Recovery Requests</h3>
+                                <p>Nothing to show.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div id="view-users-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <section class="topics-detail-section section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-12 m-auto">
+                                <h3 class="mb-4">View Users</h3>
+                                <p>View the users in the system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section class="timeline-section section-padding" id="section_3">
+            <div class="section-overlay"></div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 text-center">
+                        <h2 class="text-white mb-4">How does it work?</h2>
+                    </div>
+
+                    <div class="col-lg-10 col-12 mx-auto">
+                        <div class="timeline-container">
+                            <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+                                <div class="list-progress">
+                                    <div class="inner"></div>
+                                </div>
+
+                                <li>
+                                    <h4 class="text-white mb-3">Upload and Encrypt</h4>
+
+                                    <p class="text-white">Users upload their files, which are automatically encrypted
+                                        using AES encryption to ensure data is protected both at rest and in transit.
+                                    </p>
+
+                                    <div class="icon-holder">
+                                        <i class="bi-upload"></i> <!-- Replace with an upload icon -->
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h4 class="text-white mb-3">Authenticate and Access</h4>
+
+                                    <p class="text-white">Access to the encrypted files is secured through multi-factor
+                                        authentication (MFA) and role-based access control (RBAC), ensuring only
+                                        authorized users can view or manage the files.</p>
+
+                                    <div class="icon-holder">
+                                        <i class="bi-lock"></i> <!-- Replace with a security or authentication icon -->
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h4 class="text-white mb-3">Verify and Backup</h4>
+
+                                    <p class="text-white">The system verifies data integrity with SHA-256 hash functions
+                                        and includes secure backup and recovery options to safeguard against data loss.
+                                    </p>
+
+                                    <div class="icon-holder">
+                                        <i class="bi-cloud-upload"></i>
+                                        <!-- Replace with a backup or cloud storage icon -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center mt-5">
+                        <p class="text-white">
+                            Want to learn more?
+                            <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="faq-section section-padding" id="section_4">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12">
+                        <h2 class="mb-4">Frequently Asked Questions</h2>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="col-lg-5 col-12">
+                        <img src="{{ url_for('static', filename='images/faq_graphic.jpg') }}" class="img-fluid" alt="FAQs">
+                    </div>
+
+                    <div class="col-lg-6 col-12 m-auto">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        How does encryption protect my files?
+                                    </button>
+                                </h2>
+
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Our system uses AES encryption to secure your files, both when they are stored
+                                        and during transmission. This means your data is converted into a secure format
+                                        that can only be accessed with the correct decryption key.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        How is access to my files controlled?
+                                    </button>
+                                </h2>
+
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Access is controlled through multi-factor authentication (MFA) and role-based
+                                        access control (RBAC). MFA requires additional verification steps, while RBAC
+                                        ensures only authorized users can access or manage specific files.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        What happens if my data is altered?
+                                    </button>
+                                </h2>
+
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        We use SHA-256 hash functions to verify the integrity of your files. If any
+                                        unauthorized changes are detected, you'll be notified, ensuring your data
+                                        remains intact and secure.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour" aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                        How is my data backed up?
+                                    </button>
+                                </h2>
+
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Our system includes secure backup and recovery options to protect your data from
+                                        loss. Regular backups ensure you can recover your files if needed, with
+                                        encryption maintaining their security.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="contact-section section-padding section-bg" id="section_5">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12 text-center">
+                        <h2 class="mb-5">Get in touch</h2>
+                    </div>
+
+                    <div class="col-lg-5 col-12 mb-4 mb-lg-0">
+                        <iframe class="google-map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.065641062665!2d-122.4230416990949!3d37.80335401520422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858127459fabad%3A0x808ba520e5e9edb7!2sFrancisco%20Park!5e1!3m2!1sen!2sth!4v1684340239744!5m2!1sen!2sth"
+                            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-3 mb-lg- mb-md-0 ms-auto">
+                        <h4 class="mb-3">Head office</h4>
+
+                        <p>Bay St &amp;, Larkin St, San Francisco, CA 94109, United States</p>
+
+                        <hr>
+
+                        <p class="d-flex align-items-center mb-1">
+                            <span class="me-2">Phone</span>
+
+                            <a href="tel: 305-240-9671" class="site-footer-link">
+                                305-240-9671
+                            </a>
+                        </p>
+
+                        <p class="d-flex align-items-center">
+                            <span class="me-2">Email</span>
+
+                            <a href="mailto:info@company.com" class="site-footer-link">
+                                info@company.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mx-auto">
+                        <h4 class="mb-3">Dubai office</h4>
+
+                        <p>Burj Park, Downtown Dubai, United Arab Emirates</p>
+
+                        <hr>
+
+                        <p class="d-flex align-items-center mb-1">
+                            <span class="me-2">Phone</span>
+
+                            <a href="tel: 110-220-3400" class="site-footer-link">
+                                110-220-3400
+                            </a>
+                        </p>
+
+                        <p class="d-flex align-items-center">
+                            <span class="me-2">Email</span>
+
+                            <a href="mailto:info@company.com" class="site-footer-link">
+                                info@company.com
+                            </a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <i class="bi-back"></i>
+                        <span>SecFile</span>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <h6 class="site-footer-title mb-3">Resources</h6>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">How it works</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">FAQs</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 305-240-9671" class="site-footer-link">
+                            305-240-9671
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:info@company.com" class="site-footer-link">
+                            info@company.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            English</button>
+                    </div>
+
+                    <p class="copyright-text mt-lg-5 mt-4">Copyright © SecFile. All rights reserved.
+                        
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/click-scroll.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            function setupModals() {
+                const triggers = document.querySelectorAll('[data-modal-target]');
+                triggers.forEach(trigger => {
+                    const modalSelector = trigger.getAttribute('data-modal-target');
+                    const modal = document.querySelector(modalSelector);
+                    const closeButton = modal.querySelector('.close-button');
+
+                    // Show the modal
+                    trigger.addEventListener('click', () => {
+                        modal.style.display = 'block';
+                    });
+
+                    // Hide the modal
+                    closeButton.addEventListener('click', () => {
+                        modal.style.display = 'none';
+                    });
+
+                    // Close the modal if the user clicks outside of the modal content
+                    window.addEventListener('click', (event) => {
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            setupModals();
+        });
+    </script>
+
+<script>
+    // Number of Users Chart
+    const ctxUsers = document.getElementById('usersChart').getContext('2d');
+    const usersChart = new Chart(ctxUsers, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+                label: 'Number of Users',
+                data: [120, 150, 180, 200, 170, 160, 190],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Memory Usage Chart
+    const ctxMemory = document.getElementById('memoryChart').getContext('2d');
+    const memoryChart = new Chart(ctxMemory, {
+        type: 'doughnut',
+        data: {
+            labels: ['Document Files', 'Image Files', 'Video Files', 'Audio Files'],
+            datasets: [{
+                label: 'Memory Usage',
+                data: [300, 150, 500, 100],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `${tooltipItem.label}: ${tooltipItem.raw} MB`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+
+</html>
